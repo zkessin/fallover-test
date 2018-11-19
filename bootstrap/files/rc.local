@@ -1,0 +1,5 @@
+#!/bin/bash
+
+
+echo fs.inotify.max_user_watches=16384 | tee -a /etc/sysctl.conf
+sysctl -p
