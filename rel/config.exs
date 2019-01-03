@@ -8,14 +8,13 @@
 |> Enum.map(&Code.eval_file(&1))
 
 use Mix.Releases.Config,
-    # This sets the default release built by `mix release`
-    default_release: :default,
-    # This sets the default environment used by `mix release`
-    default_environment: Mix.env()
+  # This sets the default release built by `mix release`
+  default_release: :default,
+  # This sets the default environment used by `mix release`
+  default_environment: Mix.env()
 
 # For a full list of config options for both releases
 # and environments, visit https://hexdocs.pm/distillery/config/distillery.html
-
 
 # You may define one or more environments in this file,
 # an environment's settings will override those of a release
@@ -23,22 +22,17 @@ use Mix.Releases.Config,
 # and environment configuration is called a profile
 
 environment :dev do
-  # If you are running Phoenix, you should make sure that
-  # server: true is set and the code reloader is disabled,
-  # even in dev mode.
-  # It is recommended that you build with MIX_ENV=prod and pass
-  # the --env flag to Distillery explicitly if you want to use
-  # dev mode.
-  set dev_mode: true
-  set include_erts: false
-  set cookie: :",`5k0[N;7SZ<UF<~io2W:LIWsDx{e!m01V]oU;2]<{;1=_/iW1Y*mVl?}~RO4^%S"
+  set(dev_mode: true)
+  set(include_erts: false)
+  set(cookie: :",`5k0****************************************S")
 end
 
 environment :prod do
-  set include_erts: true
-  set include_src: false
-  set cookie: :">dG~@q={BboU,:h6a57u!I.{G<,T5<.LF/FB4gAHi`7{*kB{rL=zXnPR2S/]bjYR"
-  set vm_args: "rel/vm.args"
+  set(dev_mode: false)
+  set(include_erts: true)
+  set(include_src: false)
+  set(cookie: :">dG~***************************************")
+  set(vm_args: "rel/vm.args")
 end
 
 # You may define one or more releases in this file.
@@ -47,9 +41,11 @@ end
 # will be used by default
 
 release :fallover do
-  set version: current_version(:fallover)
-  set applications: [
-    :runtime_tools
-  ]
-end
+  set(version: current_version(:fallover))
 
+  set(
+    applications: [
+      :runtime_tools
+    ]
+  )
+end
