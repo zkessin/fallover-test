@@ -36,11 +36,13 @@ Vagrant.configure("2") do |config|
   config.vm.define "alpha", primary: true do |ex|
     ex.vm.hostname = "alpha"
     ex.vm.network "private_network", ip: "192.168.0.2"
+
     ex.vm.provision "shell", path: "bootstrap/system.sh"
+
     ex.vm.provision "shell", inline: <<-SHELL
     cd /vagrant
     mix local.hex --force
-    MIX_ENV=prod mix do deps.get, compile, release
+    MIX_ENV=prod REPLACE_OS_VARS=true mix do deps.get, compile, release
   SHELL
   end
 

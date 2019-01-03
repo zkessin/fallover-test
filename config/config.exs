@@ -29,3 +29,12 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
+
+config :kernel,
+  distributed: [
+    # :fallover@charlie, :fallover@delta]}
+    {:fallover, 5000, [:fallover@alpha, :fallover@bravo]}
+  ],
+  # , :fallover@charlie, :fallover@delta],
+  sync_nodes_mandatory: [:fallover@alpha, :fallover@bravo],
+  sync_nodes_timeout: 120_000

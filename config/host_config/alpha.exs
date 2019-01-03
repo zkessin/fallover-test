@@ -29,7 +29,13 @@ use Mix.Config
 #
 #     import_config "#{Mix.env()}.exs"
 
+IO.puts("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+IO.puts("ALPHA")
+IO.puts("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+
 config :kernel,
-  distributed: [{:fallover, 5000, [:fallover@alpha, {:fallover@bravo, :fallover@charlie}]}],
-  sync_nodes_mandatory: [:fallover@bravo, :fallover@charlie],
+  distributed: [
+    {:fallover, 5000, [:fallover@alpha, {:fallover@bravo, :fallover@charlie, :fallover@delta}]}
+  ],
+  sync_nodes_mandatory: [:fallover@bravo, :fallover@charlie, :fallover@delta],
   sync_nodes_timeout: 30000
