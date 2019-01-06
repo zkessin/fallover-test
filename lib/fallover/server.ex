@@ -5,7 +5,7 @@ defmodule Fallover.Server do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, [], name: {:global, __MODULE__})
+    GenServer.start_link(__MODULE__, [])
   end
 
   def get() do

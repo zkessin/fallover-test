@@ -1,5 +1,4 @@
 # This file is responsible for configuring your application
-
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
@@ -29,16 +28,10 @@ use Mix.Config
 # here (which is why it is important to import them last).
 #
 #     import_config "#{Mix.env()}.exs"
-hosts = [:fallover@alpha, :fallover@bravo, :fallover@charlie, :fallover@delta]
-IO.puts("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&")
-IO.puts("HOSTS #{inspect(hosts)}")vd
-IO.puts("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&")
 
 config :kernel,
   distributed: [
-    # :fallover@charlie, :fallover@delta]}
-    {:fallover, 5000, hosts}
+    {:fallover, 5000, [:fallover@alpha, {:fallover@bravo, :fallover@charlie, :fallover@delta}]}
   ],
-  # , :fallover@charlie, :fallover@delta],
-  sync_nodes_mandatory: hosts,
-  sync_nodes_timeout: 5000
+  sync_nodes_mandatory: [:fallover@bravo, :fallover@alpha, :fallover@charlie],
+  sync_nodes_timeout: 30000
